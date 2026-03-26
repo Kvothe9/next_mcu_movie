@@ -2,10 +2,15 @@ const data = JSON.parse(localStorage.getItem("nextMovie"));
 
 document.getElementById("app").innerHTML = `
   <div class="card">
-    <img src="${data.poster_url}">
-    <div class="title">${data.title}</div>
-    <div class="date">${data.release_date} (${data.days_until} días)</div>
-    <div class="overview">${data.overview}</div>
+    <img 
+      src="${apiData.poster_url}" 
+      loading="lazy"
+      width="300"
+      height="450"
+    >
+    <div class="title">${apiData.title}</div>
+    <div class="date">${apiData.release_date} (${apiData.days_until} días)</div>
+    <div class="overview">${apiData.overview}</div>
   </div>
 `;
 
