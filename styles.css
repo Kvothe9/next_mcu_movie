@@ -41,9 +41,10 @@ body {
 
 .flex-row{
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    height: calc(100dvh - 5rem);
     align-items: center;
+    gap: 20px;;
 }
 
 .title {
