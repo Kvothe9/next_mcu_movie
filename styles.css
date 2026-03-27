@@ -13,7 +13,7 @@ body {
     position: relative;
     margin: 50px auto;
     display: block;
-    height: clamp(300px, 80dvh, 700px);
+    height: 80dvh
     width: auto;
     aspect-ratio: 0.67;
     object-fit: contain;
