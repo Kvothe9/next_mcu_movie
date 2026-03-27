@@ -1,17 +1,13 @@
-const data = JSON.parse(localStorage.getItem("nextMovie"));
+// next.html
+const nextMovie = JSON.parse(localStorage.getItem("nextMovie"));
 
 document.getElementById("app").innerHTML = `
-  <div class="card">
-    <img 
-      src="${apiData.poster_url}" 
-      loading="lazy"
-      width="300"
-      height="450"
-    >
-    <div class="title">${apiData.title}</div>
-    <div class="date">${apiData.release_date} (${apiData.days_until} días)</div>
-    <div class="overview">${apiData.overview}</div>
-  </div>
+  <section class="flex-row">
+      <article class="smart_shadow" style="background-image: url(${nextMovie.poster_url})"></article>
+    </section>
+    <div class="title">${nextMovie.title}</div>
+    <div class="date">${nextMovie.release_date} (${nextMovie.days_until} días)</div>
+    <div class="overview">${nextMovie.overview}</div>
 `;
 
 function goBack() {

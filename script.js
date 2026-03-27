@@ -1,39 +1,26 @@
-const apiData = {
-  "days_until": 125,
-  "following_production": {
-    "days_until": 265,
-    "id": 1003596,
-    "overview": "The Avengers, Wakandans...",
-    "poster_url": "https://image.tmdb.org/t/p/w300/s2Fkuq0tj7mjAHEdbfQkFkdbeRI.jpg",
-    "release_date": "2026-12-16",
-    "title": "Avengers: Doomsday",
-    "type": "Movie"
-  },
-  "id": 969681,
-  "overview": "Four years have passed since...",
-  "poster_url": "https://image.tmdb.org/t/p/w300/ucQ0QBXXQPSxeUmWfh4YQenIuB9.jpg",
-  "release_date": "2026-07-29",
-  "title": "Spider-Man: Brand New Day",
-  "type": "Movie"
-};
+const JSON_URL = "https://whenisthenextmcufilm.com/api";
 
-// Guardar la siguiente película
-localStorage.setItem("nextMovie", JSON.stringify(apiData.following_production));
+fetch(JSON_URL)
+  .then(res => res.json())
+  .then(apiData => {
+    // Guardar la siguiente película para next.html
+    localStorage.setItem("nextMovie", JSON.stringify(apiData.following_production));
 
-// Render principal
-document.getElementById("app").innerHTML = `
-  <div class="card">
-    <img 
-      src="${apiData.poster_url}" 
-      loading="lazy"
-      width="300"
-      height="450"
-    >
-    <div class="title">${apiData.title}</div>
-    <div class="date">${apiData.release_date} (${apiData.days_until} días)</div>
-    <div class="overview">${apiData.overview}</div>
-  </div>
-`;
+    // Mostrar la película actual
+    renderMovie(apiData);
+  })
+  .catch(err => console.error(err));
+
+function renderMovie(movieData) {
+  document.getElementById("app").innerHTML = `
+    <section class="flex-row">
+      <article class="smart_shadow" style="background-image: url(${movieData.poster_url})"></article>
+    </section>
+    <div class="title">${movieData.title}</div>
+    <div class="date">${movieData.release_date} (${movieData.days_until} días)</div>
+    <div class="overview">${movieData.overview}</div>
+  `;
+}
 
 function goNext() {
   window.location.href = "next.html";
